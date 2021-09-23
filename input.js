@@ -19,11 +19,7 @@ const setupInput = (conn)=> {
 
 const handleUserInput = (key) => {
   const stdout = process.stdout;
-  const interval = function(key) {
-    func = setInterval(() => {
-      connection.write(key);
-    }, 100);
-  };
+  
   if (key === '\u0003') {
     stdout.write("Exit game.\n");
     process.exit();
