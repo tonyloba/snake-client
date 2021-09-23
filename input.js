@@ -1,35 +1,49 @@
-const setupInput = function () {
+
+let connection;
+
+
+const hello = "Hello there!";
+
+const setupInput = (conn)=> {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
-  stdin.setEncoding("utf8");
+  stdin.setEncoding('utf8');
   stdin.resume();
+  stdin.on('data', key => {
+    handleUserInput(key);
+  });
   return stdin;
 };
 
 
-const handleUserInput = function(){
-  const stdin = process.stdin;
-  stdin.on('data',(key)=>{
-    ('data',(key) =>  {
-      if(key === '\u0003'){
-        process.exit();
-      }
-      if (key === '\w'){
-        console.log("Move up");
-      }
-      if (key === '\s'){
-        console.log("Move down");
-      }
-      if (key === '\a'){
-        console.log("Move left");
-      }
-      if (key === '\d'){
-        console.log("Move right");
-      }
-    })
-  })
-  
-}
+const handleUserInput = (key) => {
+  const stdout = process.stdout;
+  const interval = function(key) {
+    func = setInterval(() => {
+      connection.write(key);
+    }, 100);
+  };
+  if (key === '\u0003') {
+    stdout.write("Exit game.\n");
+    process.exit();
+  }
+  if (key === 'w') {
+    console.log("Move: up");
+  }
+  if (key === 's') {
+    console.log("Move: down");
+  }
+  if (key === 'a') {
+    console.log("Move: left");
+  }
+  if (key === 'd') {
+    console.log("Move: right");
+  }
+  if (key === "h") {
+    connection.write(hello);
+  }
 
+};
 
-module.exports = setupInput;
+module.exports = setupInput ;

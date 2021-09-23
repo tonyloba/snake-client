@@ -1,14 +1,11 @@
-const net = require("net");
-// const connect = require('./client.js')
-// const setupInput = require('./input.js')
+const connect = require("./client.js");
+const setupInput = require("./input.js");
 
+const connection = connect();
 
-const { connect } = require("./client");
-const { setupInput } = require("./input");
+console.log('Connecting ...');
 
-console.log("Connecting ...");
-connect();
-setupInput();
+setupInput(connection);
 
-
+module.exports = connect;
 
