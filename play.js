@@ -1,13 +1,14 @@
 const net = require("net");
-const connect = require('./client.js')
+// const connect = require('./client.js')
+// const setupInput = require('./input.js')
 
 
-
-
-// conn.on("connect", (data) => {
-//   console.log("DATA CAME IN!!!!!");
-//   console.log(data);
-// });
+const { connect } = require("./client");
+const { setupInput } = require("./input");
 
 console.log("Connecting ...");
 connect();
+setupInput();
+
+
+
